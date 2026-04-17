@@ -1,0 +1,60 @@
+import type { Store } from "@/lib/types";
+
+export const stores: Store[] = [
+  {
+    id: "1",
+    name: "Spot Hideout",
+    coordinates: { lat: 10.792049196544514,  lng: 106.69029095334324 },
+    priceRange: "$$",
+    address: "158C Trần Quang Khải, Tân Định, HCMC",
+    ratings: { service: 4, staff: 4, quality: 4 },
+  },
+  {
+    id: "2",
+    name: "Oriental Sun",
+    coordinates: { lat: 10.792076756178636,  lng: 106.68956426197794 },
+    priceRange: "$$",
+    address: "186/10 Trần Quang Khải, Tân Định, HCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+  {
+    id: "3",
+    name: "Hikaru",
+    coordinates: { lat: 10.795191789219386,  lng: 106.69025257474634 },
+    priceRange: "$$",
+    address: "109/16 Trần Khắc Chân, Tân Định, HCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+  {
+    id: "4",
+    name: "ACIENT.ARCHIVER",
+    coordinates: { lat: 10.791280919805423,  lng: 106.6869588827567 },
+    priceRange: "$$",
+    address: "451/1D Hai Bà Trưng, HCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+  {
+    id: "5",
+    name: "MY CELIUM",
+    coordinates: { lat: 10.789848418198313 , lng: 106.69672124108614 },
+    priceRange: "$$",
+    address: "110 Điện Biên Phủ, Đa Kao, Tân Định, VietnamHCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+  {
+    id: "6", 
+    name: "TAN DINH VINTAGE",
+    coordinates: { lat: 10.794404039073955, lng: 106.69026390031316 },
+    priceRange: "$$",
+    address: "53/1 Trần Khánh Dư, Tân Định, HCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+  {
+    id: "7",
+    name: "APHIAU.GARMENTS",
+    coordinates: { lat: 10.794440690587809, lng: 106.68563537299103 },
+    priceRange: "$$",
+    address: "343 Hoàng Sa, Tân Định, HCMC",
+    ratings: { service: 5, staff: 5, quality: 4 },
+  },
+];
