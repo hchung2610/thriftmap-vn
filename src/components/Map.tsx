@@ -13,6 +13,7 @@ type MapProps = {
 };
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
+const hasMapboxToken = Boolean(process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN);
 
 export default function Map({
   stores,
@@ -24,6 +25,7 @@ export default function Map({
   const markersRef = useRef<mapboxgl.Marker[]>([]);
 
   useEffect(() => {
+    if (!hasMapboxToken) return;
     if (!mapContainerRef.current || mapRef.current) return;
 
     mapRef.current = new mapboxgl.Map({
@@ -41,25 +43,25 @@ export default function Map({
       });
 
       mapRef.current!.addLayer({
-      id: "tan-dinh-fill",
-      type: "fill",
-      source: "tan-dinh",
-      paint: {
-        "fill-color": "#ff4fa3",
-        "fill-opacity": 0.35,
-      },
-    });
+        id: "tan-dinh-fill",
+        type: "fill",
+        source: "tan-dinh",
+        paint: {
+          "fill-color": "#ff4fa3",
+          "fill-opacity": 0.35,
+        },
+      });
 
-    mapRef.current!.addLayer({
-      id: "tan-dinh-outline",
-      type: "line",
-      source: "tan-dinh",
-      paint: {
-        "line-color": "#ff2d95",
-        "line-width": 3,
-      },
+      mapRef.current!.addLayer({
+        id: "tan-dinh-outline",
+        type: "line",
+        source: "tan-dinh",
+        paint: {
+          "line-color": "#ff2d95",
+          "line-width": 3,
+        },
+      });
     });
-  });
 
     return () => {
       markersRef.current.forEach((marker) => marker.remove());
@@ -69,6 +71,7 @@ export default function Map({
   }, []);
 
   useEffect(() => {
+    if (!hasMapboxToken) return;
     if (!mapRef.current) return;
 
     markersRef.current.forEach((marker) => marker.remove());
@@ -101,6 +104,22 @@ export default function Map({
       });
     }
   }, [stores, selectedStoreId, onSelectStore]);
+
+  if (!hasMapboxToken) {
+    return (
+      <div className="flex h-full w-full items-center justify-center bg-[#ffd8eb] p-6">
+        <div className="max-w-md rounded-md border-4 border-black bg-[#fff3c9] p-4 text-center shadow-[6px_6px_0px_#000]">
+          <p className="text-lg font-black uppercase text-[#d16a2e]">
+            Map unavailable
+          </p>
+          <p className="mt-2 text-sm font-semibold text-black">
+            Add <code>NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN</code> in Vercel project
+            settings to render the interactive map.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return <div ref={mapContainerRef} className="h-full w-full" />;
 }
